@@ -23,7 +23,7 @@ export const ResumePreview = () => {
   };
 
   return (
-    <Card className="p-8 bg-white" id="resume-preview">
+    <Card className="p-8 bg-white border-0 shadow-none print:border-0 print:shadow-none" id="resume-preview">
       {renderTemplate()}
     </Card>
   );
