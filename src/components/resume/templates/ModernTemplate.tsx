@@ -49,7 +49,7 @@ export const ModernTemplate = ({ data }: ModernTemplateProps) => {
                     {skill.items.map((item, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-1 bg-primary/10 text-primary text-xs rounded-md"
+                        className="px-2 py-1 text-primary text-xs rounded-md"
                       >
                         {item}
                       </span>
