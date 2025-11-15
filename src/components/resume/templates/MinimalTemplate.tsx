@@ -16,19 +16,19 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
         <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
           {personalInfo.email && (
             <div className="flex items-center gap-1">
-              <Mail className="w-4 h-4" />
+              {/* <Mail className="w-4 h-4" /> */}
               {personalInfo.email}
             </div>
           )}
           {personalInfo.phone && (
             <div className="flex items-center gap-1">
-              <Phone className="w-4 h-4" />
+              {/* <Phone className="w-4 h-4" /> */}
               {personalInfo.phone}
             </div>
           )}
           {personalInfo.location && (
             <div className="flex items-center gap-1">
-              <MapPin className="w-4 h-4" />
+              {/* <MapPin className="w-4 h-4" /> */}
               {personalInfo.location}
             </div>
           )}
