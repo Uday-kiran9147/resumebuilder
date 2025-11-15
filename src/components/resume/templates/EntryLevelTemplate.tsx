@@ -7,7 +7,6 @@ interface EntryLevelTemplateProps {
 
 export const EntryLevelTemplate = ({ data }: EntryLevelTemplateProps) => {
   const { personalInfo, experience, education, skills, projects } = data;
-  
   // Smart section ordering: prioritize what exists
   const hasExperience = experience.length > 0;
 
@@ -19,19 +18,19 @@ export const EntryLevelTemplate = ({ data }: EntryLevelTemplateProps) => {
         <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
           {personalInfo.email && (
             <div className="flex items-center gap-1">
-              <Mail className="w-4 h-4" />
+              {/* <Mail className="w-4 h-4" /> */}
               {personalInfo.email}
             </div>
           )}
           {personalInfo.phone && (
             <div className="flex items-center gap-1">
-              <Phone className="w-4 h-4" />
+              {/* <Phone className="w-4 h-4" /> */}
               {personalInfo.phone}
             </div>
           )}
           {personalInfo.location && (
             <div className="flex items-center gap-1">
-              <MapPin className="w-4 h-4" />
+              {/* <MapPin className="w-4 h-4" /> */}
               {personalInfo.location}
             </div>
           )}
@@ -81,12 +80,12 @@ export const EntryLevelTemplate = ({ data }: EntryLevelTemplateProps) => {
           <div className="space-y-3">
             {skills.map((skill) => (
               <div key={skill.id} className="bg-muted/20 p-3 rounded-lg">
-                <h3 className="font-semibold mb-2 text-primary">{skill.category}</h3>
+                <h3 className="font-semibold mb-2">{skill.category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {skill.items.map((item, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1.5 bg-primary/10 text-primary text-sm rounded-md font-medium"
+                      className="p-2 text-primary text-sm rounded-md font-medium"
                     >
                       {item}
                     </span>
