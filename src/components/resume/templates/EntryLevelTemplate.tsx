@@ -51,7 +51,7 @@ export const EntryLevelTemplate = ({ data }: EntryLevelTemplateProps) => {
           <h2 className="text-xl font-bold mb-3 text-primary">EDUCATION</h2>
           <div className="space-y-4">
             {education.map((edu) => (
-              <div key={edu.id} className="bg-muted/20 p-4 rounded-lg">
+              <div key={edu.id} className="bg-muted/30 px-4 rounded-lg">
                 <div className="flex justify-between items-start mb-2">
                   <div>
                     <h3 className="font-bold text-lg">{edu.degree}</h3>
@@ -79,7 +79,7 @@ export const EntryLevelTemplate = ({ data }: EntryLevelTemplateProps) => {
           <h2 className="text-xl font-bold mb-3 text-primary">SKILLS</h2>
           <div className="space-y-3">
             {skills.map((skill) => (
-              <div key={skill.id} className="bg-muted/20 p-3 rounded-lg">
+              <div key={skill.id} className="bg-muted/30 px-4">
                 <h3 className="font-semibold mb-2">{skill.category}</h3>
                 <div className="flex flex-wrap gap-2">
                   {skill.items.map((item, idx) => (
@@ -103,7 +103,7 @@ export const EntryLevelTemplate = ({ data }: EntryLevelTemplateProps) => {
           <h2 className="text-xl font-bold mb-3 text-primary">PROJECTS</h2>
           <div className="space-y-4">
             {projects.map((project) => (
-              <div key={project.id} className="bg-muted/20 p-4 rounded-lg">
+              <div key={project.id} className="bg-muted/30 px-4 rounded-lg">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="font-bold text-lg">{project.name}</h3>
                   {project.url && (
