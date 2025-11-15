@@ -9,7 +9,7 @@ export const MinimalTemplate = ({ data }: MinimalTemplateProps) => {
   const { personalInfo, experience, education, skills, projects } = data;
 
   return (
-    <div className="space-y-6 text-foreground" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div className="space-y-3 text-foreground" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       {/* Header */}
       <div className="border-b-2 border-primary pb-4">
         <h1 className="text-4xl font-bold mb-2">{personalInfo.name}</h1>
