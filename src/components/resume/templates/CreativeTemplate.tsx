@@ -58,12 +58,12 @@ export const CreativeTemplate = ({ data }: CreativeTemplateProps) => {
             <div className="space-y-3">
               {skills.map((skill) => (
                 <div key={skill.id}>
-                  <h3 className="font-semibold text-xs mb-2 text-primary">{skill.category}</h3>
+                  <h3 className="font-semibold text-xs mb-2 text-black">{skill.category}</h3>
                   <div className="flex flex-wrap gap-1.5">
                     {skill.items.map((item, idx) => (
                       <span
                         key={idx}
-                        className="px-2 py-1 bg-primary text-primary-foreground text-xs rounded-full font-medium"
+                        className="px-2 py-1 text-primary text-xs rounded-full font-medium"
                       >
                         {item}
                       </span>
