@@ -6,37 +6,62 @@ export const exportToPDF = async (resume: ResumeData): Promise<void> => {
   const element = document.getElementById("resume-preview");
   if (!element) throw new Error("Resume preview element not found");
 
-  // Remove external spacing if any parent containers have them
-  const original = element.style.cssText;
-  element.style.margin = "0";
-  element.style.border = "none";
-  element.style.boxShadow = "none"; // avoids faint shadows in PDF
+  // Create a clone of the element
+  const clone = element.cloneNode(true) as HTMLElement;
 
-  // Capture exact template
-  const canvas = await html2canvas(element, {
-    scale: 2,
-    useCORS: true,
-    backgroundColor: "#ffffff",
-    logging: false,
-  });
+  // Create a container for the clone to ensure consistent rendering
+  const container = document.createElement("div");
+  container.style.position = "absolute";
+  container.style.top = "-9999px";
+  container.style.left = "-9999px";
+  // Force A4 width (approx 794px at 96 DPI)
+  container.style.width = "794px"; 
+  container.appendChild(clone);
+  document.body.appendChild(container);
 
-  // Restore styling
-  element.style.cssText = original;
+  // Apply styles to the clone to ensure it looks right
+  clone.style.margin = "0";
+  clone.style.border = "none";
+  clone.style.boxShadow = "none";
+  clone.style.width = "100%"; // Fill the container
+  clone.style.height = "auto";
+  
+  // Wait for any images to load (optional but good practice)
+  await new Promise((resolve) => setTimeout(resolve, 100));
 
-  const imgData = canvas.toDataURL("image/png");
+  try {
+    // Capture the clone
+    const canvas = await html2canvas(clone, {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: "#ffffff",
+      logging: false,
+      windowWidth: 794, // Force window width for media queries
+    });
 
-  // PDF same size as template
-  const pdf = new jsPDF({
-    orientation: "portrait",
-    unit: "px",
-    format: [canvas.width, canvas.height], // EXACT size of card
-  });
+    const imgData = canvas.toDataURL("image/png");
 
-  pdf.addImage(imgData, "PNG", 0, 0, canvas.width, canvas.height);
+    // PDF setup
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "px",
+      format: "a4",
+    });
 
-  const filename = resume.personalInfo.name
-    ? `${resume.personalInfo.name.replace(/\s+/g, "_")}_Resume.pdf`
-    : "Resume.pdf";
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const imgHeight = (canvas.height * pdfWidth) / canvas.width;
 
-  pdf.save(filename);
+    // Add image to PDF, scaling to fit width
+    pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, imgHeight);
+
+    const filename = resume.personalInfo.name
+      ? `${resume.personalInfo.name.replace(/\s+/g, "_")}_Resume.pdf`
+      : "Resume.pdf";
+
+    pdf.save(filename);
+  } finally {
+    // Clean up
+    document.body.removeChild(container);
+  }
 };
